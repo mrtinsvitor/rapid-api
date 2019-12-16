@@ -22,9 +22,9 @@ export default (sequelize, DataTypes) => {
     }
   );
 
-  Student.associate = function (models) {
+  Course.associate = function (models) {
     /* Pertence */
-    Student.belongsTo(models.Professor, {
+    Course.belongsTo(models.Professor, {
       foreignKey: {
         field: 'id_coordinator',
         allowNull: false
