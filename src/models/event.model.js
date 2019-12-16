@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
-      eventName: {
+      name: {
         field: 'nm_event',
         type: DataTypes.STRING(120),
         allowNull: false,
@@ -22,8 +22,8 @@ export default (sequelize, DataTypes) => {
       },
       targetAudience: {
         field: 'tx_target_audience',
-        type: DataTypes.TEXT,
-        allowNull: false,
+        type: DataTypes.STRING(160),
+        allowNull: true,
       },
       vacancy: {
         field: 'qt_vacancy',
@@ -85,7 +85,7 @@ export default (sequelize, DataTypes) => {
     Event.belongsTo(models.Professor, {
       foreignKey: {
         field: 'id_professor',
-        allowNull: false
+        allowNull: true
       },
       as: 'professor'
     });

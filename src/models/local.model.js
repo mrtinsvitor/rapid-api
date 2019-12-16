@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
-      localName: {
+      name: {
         field: 'nm_local',
         type: DataTypes.STRING(120),
         allowNull: false,
@@ -25,7 +25,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.CHAR(1),
         allowNull: true,
       },
-      cep: {
+      zipCode: {
         field: 'cd_zip_code',
         type: DataTypes.STRING(20),
         allowNull: true,
@@ -46,10 +46,6 @@ export default (sequelize, DataTypes) => {
       tableName: 'tb_local'
     }
   );
-
-  Local.associate = function (models) {
-    /* Pertence */
-  }
 
   return Local;
 }

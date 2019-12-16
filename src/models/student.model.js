@@ -27,7 +27,7 @@ export default (sequelize, DataTypes) => {
     Student.belongsTo(models.User, {
       foreignKey: {
         field: 'id_user',
-        allowNull: true
+        allowNull: false
       },
       as: 'user'
     });
@@ -35,7 +35,7 @@ export default (sequelize, DataTypes) => {
     Student.belongsTo(models.Course, {
       foreignKey: {
         field: 'id_course',
-        allowNull: true
+        allowNull: false
       },
       as: 'course'
     });

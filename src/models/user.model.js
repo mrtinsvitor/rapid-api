@@ -5,7 +5,7 @@ export default (sequelize, DataTypes) => {
     {
       id: {
         field: 'id_user',
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
       lastName: {
         field: 'nm_last_name',
         type: DataTypes.STRING(80),
-        allowNull: false,
+        allowNull: true,
       },
       enrollment: {
         field: 'cd_enrollment',
@@ -46,7 +46,8 @@ export default (sequelize, DataTypes) => {
     /* Pertence */
     User.belongsTo(models.Profile, {
       foreignKey: {
-        field: 'id_profile'
+        field: 'id_profile',
+        allowNull: false
       },
       as: 'profile'
     });

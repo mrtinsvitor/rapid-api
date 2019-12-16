@@ -27,7 +27,7 @@ export default (sequelize, DataTypes) => {
     Student.belongsTo(models.Professor, {
       foreignKey: {
         field: 'id_coordinator',
-        allowNull: true
+        allowNull: false
       },
       as: 'coordinator'
     });

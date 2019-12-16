@@ -40,7 +40,7 @@ export default (sequelize, DataTypes) => {
     StudentEventEnrollment.belongsTo(models.Event, {
       foreignKey: {
         field: 'id_event',
-        allowNull: true
+        allowNull: false
       },
       as: 'event'
     });

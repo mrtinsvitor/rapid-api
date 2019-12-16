@@ -22,7 +22,7 @@ export default (sequelize, DataTypes) => {
     Professor.belongsTo(models.User, {
       foreignKey: {
         field: 'id_user',
-        allowNull: true
+        allowNull: false
       },
       as: 'user'
     });
