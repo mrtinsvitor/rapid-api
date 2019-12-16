@@ -6,6 +6,9 @@ import { Event as model } from '../models';
 
 const router = express.Router();
 
-baseController(router, model);
+baseController.findAll(router, model);
+baseController.findByPk(router, model);
+baseController.insert(router, model);
+baseController.delete(router, model);
 
 export default router;
