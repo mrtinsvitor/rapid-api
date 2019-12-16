@@ -19,6 +19,11 @@ export default (sequelize, DataTypes) => {
         field: 'nm_term',
         type: DataTypes.STRING(20),
         allowNull: false,
+      },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
       }
     },
     {

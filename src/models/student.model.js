@@ -14,6 +14,11 @@ export default (sequelize, DataTypes) => {
         field: 'qt_complementary_hours',
         type: DataTypes.INTEGER,
         allowNull: true,
+      },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
       }
     },
     {

@@ -11,8 +11,10 @@ export default {
       ssl: false
     },
     define: {
-      timestamps: false,
+      timestamps: true,
       freezeTableName: true,
+      createdAt: 'dh_insertion',
+      updatedAt: false
     },
     pool: {
       max: 5,

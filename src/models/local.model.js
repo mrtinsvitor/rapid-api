@@ -40,6 +40,11 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING(220),
         allowNull: true,
       },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
+      }
     },
     {
       schema: eventsSchema,

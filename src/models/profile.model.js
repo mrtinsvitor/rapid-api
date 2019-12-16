@@ -15,10 +15,15 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING(40),
         allowNull: false,
       },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
+      }
     },
     {
       schema: eventsSchema,
-      tableName: 'tb_profile'
+      tableName: 'tb_profile',
     }
   );
 

@@ -14,6 +14,11 @@ export default (sequelize, DataTypes) => {
         field: 'nm_course',
         type: DataTypes.STRING(80),
         allowNull: true,
+      },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
       }
     },
     {

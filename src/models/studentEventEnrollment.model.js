@@ -14,11 +14,17 @@ export default (sequelize, DataTypes) => {
         field: 'dh_enrollment',
         type: DataTypes.DATE,
         allowNull: false,
+        defaultValue: sequelize.NOW
       },
       participationDate: {
         field: 'dh_participation',
         type: DataTypes.DATE,
         allowNull: true,
+      },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
       }
     },
     {

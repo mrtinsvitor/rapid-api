@@ -10,6 +10,11 @@ export default (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
+      }
     },
     {
       schema: eventsSchema,

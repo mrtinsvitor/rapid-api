@@ -9,6 +9,11 @@ export default (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
+      },
+      insertionUserId: {
+        field: 'id_insertion_user',
+        type: DataTypes.BIGINT,
+        allowNull: false,
       }
     },
     {
