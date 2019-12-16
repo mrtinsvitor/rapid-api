@@ -1,26 +1,31 @@
 import { eventsSchema } from '../config/constants';
 
 export default (sequelize, DataTypes) => {
-  const Profile = sequelize.define('Profile',
+  const Term = sequelize.define('Term',
     {
       id: {
-        field: 'id_profile',
+        field: 'id_term',
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
-        field: 'nm_profile',
-        type: DataTypes.STRING(40),
+      code: {
+        field: 'cd_term',
+        type: DataTypes.STRING(2),
         allowNull: false,
       },
+      name: {
+        field: 'nm_term',
+        type: DataTypes.STRING(20),
+        allowNull: false,
+      }
     },
     {
       schema: eventsSchema,
-      tableName: 'tb_profile'
+      tableName: 'tb_term'
     }
   );
 
-  return Profile;
+  return Term;
 }

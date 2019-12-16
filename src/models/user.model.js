@@ -12,27 +12,27 @@ export default (sequelize, DataTypes) => {
       },
       firstName: {
         field: 'nm_first_name',
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(20),
         allowNull: false,
       },
       lastName: {
         field: 'nm_last_name',
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(80),
         allowNull: false,
       },
       enrollment: {
         field: 'cd_enrollment',
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(60),
         allowNull: false,
       },
       email: {
         field: 'tx_email',
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(320),
         allowNull: false,
       },
       password: {
         field: 'tx_password',
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(30),
         allowNull: false,
       },
     },
