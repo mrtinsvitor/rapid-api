@@ -4,7 +4,7 @@ export default (sequelize, DataTypes) => {
   const Student = sequelize.define('Student',
     {
       id: {
-        field: 'id_professor',
+        field: 'id_student',
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,

@@ -4,7 +4,7 @@ export default (sequelize, DataTypes) => {
   const Local = sequelize.define('Local',
     {
       id: {
-        field: 'id_professor',
+        field: 'id_local',
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,

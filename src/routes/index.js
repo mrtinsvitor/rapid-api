@@ -18,13 +18,13 @@ router.get('/', (req, res) => res.send('Hello World!'));
 
 router.use('/courses', course);
 router.use('/events', event);
-router.use('/eventCourses', eventCourse);
+router.use('/event-courses', eventCourse);
 router.use('/locals', local);
 router.use('/professors', professor);
-router.use('/professorCourses', professorCourse);
+router.use('/professor-courses', professorCourse);
 router.use('/profiles', profile);
 router.use('/students', student);
-router.use('/studentEventEnrollments', studentEventEnrollment);
+router.use('/student-event-enrollments', studentEventEnrollment);
 router.use('/terms', term);
 router.use('/users', user);
 

@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
       },
       description: {
-        field: 'nm_event',
+        field: 'tx_description',
         type: DataTypes.TEXT,
         allowNull: false,
       },
@@ -68,7 +68,7 @@ export default (sequelize, DataTypes) => {
     },
     {
       schema: eventsSchema,
-      tableName: 'tb_event'
+      tableName: 'tb_event',
     }
   );
 
