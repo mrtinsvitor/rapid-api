@@ -4,9 +4,7 @@ export default {
   findAll: (router, model) => {
     router.get('/', (req, res, next) => {
       return model.findAll({
-        raw: true,
-        include: [{ all: true, nested: false }],
-        attributes: { exclude: ['insertionUserId', 'dh_insertion'] }
+        include: [],
       })
         .then(content => res.status(httpStatus.OK).json(content))
         .catch(err =>
@@ -16,10 +14,7 @@ export default {
   },
   findByPk: (router, model) => {
     router.get('/:id', (req, res, next) => {
-      return model.findByPk(req.params.id, {
-        include: [{ all: true, nested: true }],
-        attributes: { exclude: ['insertionUserId', 'dh_insertion'] }
-      })
+      return model.findByPk(req.params.id)
         .then(content => res.status(httpStatus.OK).json(content))
         .catch(err =>
           res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error: err })

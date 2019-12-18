@@ -14,7 +14,11 @@ export default {
       timestamps: true,
       freezeTableName: true,
       createdAt: 'dh_insertion',
-      updatedAt: false
+      updatedAt: false,
+      defaultScope: {
+        attributes: { exclude: ['insertionUserId', 'dh_insertion'] },
+      },
+      scopes: {}
     },
     pool: {
       max: 5,

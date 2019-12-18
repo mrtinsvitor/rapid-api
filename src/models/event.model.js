@@ -74,7 +74,7 @@ export default (sequelize, DataTypes) => {
     {
       schema: eventsSchema,
       tableName: 'tb_event',
-    }
+    },
   );
 
   Event.associate = function (models) {
