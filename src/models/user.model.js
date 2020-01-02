@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 import { eventsSchema } from '../config/constants';
 
 export default (sequelize, DataTypes) => {
@@ -38,7 +40,7 @@ export default (sequelize, DataTypes) => {
     },
     {
       schema: eventsSchema,
-      tableName: 'tb_user'
+      tableName: 'tb_user',
     }
   );
 
@@ -51,24 +53,18 @@ export default (sequelize, DataTypes) => {
       },
       as: 'profile'
     });
-
-    /* Possui */
-    // models.Usuario.hasMany(models.Pergunta, {
-    //   foreignKey: {
-    //     name: 'idUsuario',
-    //     field: 'id_usuario'
-    //   },
-    //   as: 'perguntas'
-    // });
-
-    // models.Usuario.hasMany(models.UsuarioTitulo, {
-    //   foreignKey: {
-    //     name: 'idUsuario',
-    //     field: 'id_usuario'
-    //   },
-    //   as: 'usuarioTitulo'
-    // });
   }
+
+  // User.beforeCreate((user, options) => {
+  //   return bcrypt.hash(user.password, 10)
+  //     .then(hash => {
+  //       console.log('hash: ' + hash)
+  //       user.password = hash;
+  //     })
+  //     .catch(err => {
+  //       throw new Error();
+  //     });
+  // });
 
   return User;
 }
