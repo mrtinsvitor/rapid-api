@@ -2,13 +2,11 @@ import express from 'express';
 
 import baseController from './baseController.controller';
 
-import { Course as model } from '../models';
+import { Course } from '../models';
 
 const router = express.Router();
 
-baseController.findAll(router, model);
-baseController.findByPk(router, model);
-baseController.insert(router, model);
-baseController.delete(router, model);
+/* Generic CRUD methods. Implement new methods above */
+baseController.setAllCrudMethods(router, Course);
 
 export default router;

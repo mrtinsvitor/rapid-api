@@ -7,11 +7,6 @@ import { Event, EventCourse } from '../models';
 
 const router = express.Router();
 
-baseController.findAll(router, Event);
-baseController.findByPk(router, Event);
-baseController.insert(router, Event);
-baseController.delete(router, Event);
-
 /* Find Events by Course */
 router.get('/find-by-course/:courseId', (req, res, next) => {
   return EventCourse.findOne({
@@ -23,5 +18,8 @@ router.get('/find-by-course/:courseId', (req, res, next) => {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ sucess: 0, error: err })
     );
 });
+
+/* Generic CRUD methods. Implement new methods above */ 
+baseController.setAllCrudMethods(router, Event);
 
 export default router;

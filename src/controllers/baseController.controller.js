@@ -1,6 +1,6 @@
 import httpStatus from "http-status";
 
-export default {
+const crudMethods = {
   findAll: (router, model) => {
     router.get('/', (req, res, next) => {
       return model.findAll({
@@ -12,7 +12,7 @@ export default {
         );
     });
   },
-  findByPk: (router, model) => {
+  findOne: (router, model) => {
     router.get('/:id', (req, res, next) => {
       return model.findByPk(req.params.id)
         .then(content => res.status(httpStatus.OK).json(content))
@@ -39,7 +39,7 @@ export default {
         );
     });
   },
-  delete: (router, model) => {
+  remove: (router, model) => {
     router.delete('/', (req, res, next) => {
       model.findByPk(req.params.id).then(content =>
         content.destroy()
@@ -51,5 +51,14 @@ export default {
           )
       );
     });
+  },
+  setAllCrudMethods: (router, model) => {
+    crudMethods.findAll(router, model);
+    crudMethods.findOne(router, model);
+    crudMethods.insert(router, model);
+    crudMethods.update(router, model);
+    crudMethods.remove(router, model);
   }
 }
+
+export default crudMethods;

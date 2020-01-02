@@ -2,13 +2,11 @@ import express from 'express';
 
 import baseController from './baseController.controller';
 
-import { EventCourse as model } from '../models';
+import { EventCourse } from '../models';
 
 const router = express.Router();
 
-baseController.findAll(router, model);
-baseController.findByPk(router, model);
-baseController.insert(router, model);
-baseController.delete(router, model);
+/* Generic CRUD methods. Implement new methods above */
+baseController.setAllCrudMethods(router, EventCourse);
 
 export default router;
