@@ -2,7 +2,7 @@ import express from 'express';
 
 import baseController from './baseController.controller';
 
-import StudentEventEnrollment from '../models';
+import { StudentEventEnrollment } from '../models';
 
 const router = express.Router();
 

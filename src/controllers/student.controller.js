@@ -2,7 +2,7 @@ import express from 'express';
 
 import baseController from './baseController.controller';
 
-import Student from '../models';
+import { Student } from '../models';
 
 const router = express.Router();
 
