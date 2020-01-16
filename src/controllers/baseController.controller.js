@@ -1,15 +1,17 @@
 import httpStatus from 'http-status';
 
+import baseService from '../services/baseService.service';
+
 const crudMethods = {
   findAll: (router, model) => {
-    router.get('/', (req, res, next) => {
-      return model.findAll({
-        include: [],
-      })
-        .then(content => res.status(httpStatus.OK).json(content))
-        .catch(err =>
-          res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ sucess: 0, error: err })
-        );
+    router.get('/', async (req, res, next) => {
+      try {
+        const response = await baseService.findAll(model);
+
+        return res.status(httpStatus.OK).json(response);
+      } catch (error) {
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error: err })
+      }
     });
   },
   findOne: (router, model) => {
