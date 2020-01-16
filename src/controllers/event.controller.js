@@ -19,22 +19,22 @@ router.get('/find-by-course/:courseId', (req, res, next) => {
     );
 });
 
-/* Register a new event */
+/* Create a new event */
 router.post('/create-event', async (req, res, next) => {
   try {
     const response = await sequelize.transaction(async (t) => {
       const newEvent = await Event.create(req.body, { transaction: t })
-        .then(content => content)
+        .then(content => content);
 
       const newEventCourse = {
         eventId: newEvent.id,
         courseId: req.body.courseId,
-        insertionUserId: req.body.insertionUserId
+        ...req.body
       };
 
       await EventCourse.create(newEventCourse, { transaction: t })
         .then(content => content)
-        
+
       return newEvent;
     });
     return res.status(httpStatus.OK)
