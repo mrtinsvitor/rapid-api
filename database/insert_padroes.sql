@@ -94,12 +94,12 @@ values
 
 -- TB_Professor
 INSERT INTO evt.tb_professor
-(id_user)
-VALUES(2);
+(id_user, id_insertion_user, dh_insertion)
+VALUES(2, 1, '2020-01-20 11:03:32');
 
 INSERT INTO evt.tb_professor
-(id_user)
-VALUES(3);
+(id_user, id_insertion_user, dh_insertion)
+VALUES(3, 1, '2020-01-20 11:03:33');
 
 -- TB_Term
 INSERT INTO evt.tb_term
