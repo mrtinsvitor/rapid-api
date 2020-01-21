@@ -18,7 +18,10 @@ export default (sequelize, DataTypes) => {
     },
     {
       schema: eventsSchema,
-      tableName: 'tb_professor_course'
+      tableName: 'tb_professor_course',
+      defaultScope: {
+        attributes: { exclude: ['professorId', 'courseId'] },
+      },
     }
   );
 
