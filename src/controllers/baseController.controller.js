@@ -15,7 +15,7 @@ const crudMethods = {
     });
   },
   findOne: (router, model) => {
-    router.get('/:id', (req, res, next) => {
+    router.get('/:id', async (req, res, next) => {
       try {
         const content = await baseService.findOne(model, req.params.id);
 
@@ -26,7 +26,7 @@ const crudMethods = {
     });
   },
   insert: (router, model) => {
-    router.post('/', (req, res, next) => {
+    router.post('/', async (req, res, next) => {
       try {
         const content = await baseService.insert(model);
 
@@ -37,7 +37,7 @@ const crudMethods = {
     });
   },
   update: (router, model) => {
-    router.put('/:id', (req, res, next) => {
+    router.put('/:id', async (req, res, next) => {
       try {
         const content = await baseService.update(model, req.params.id);
 
@@ -48,7 +48,7 @@ const crudMethods = {
     });
   },
   remove: (router, model) => {
-    router.delete('/', (req, res, next) => {
+    router.delete('/', async (req, res, next) => {
       try {
         await baseService.remove(model, req.params.id);
 
