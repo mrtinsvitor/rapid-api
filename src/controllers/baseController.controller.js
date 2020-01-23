@@ -6,44 +6,44 @@ const crudMethods = {
   findAll: (router, model) => {
     router.get('/', async (req, res, next) => {
       try {
-        const content = await baseService.findAll(model);
+        const data = await baseService.findAll(model);
 
-        return res.status(httpStatus.OK).json(content);
+        return res.status(httpStatus.OK).json({ success: 1, data });
       } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error: err })
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error })
       }
     });
   },
   findOne: (router, model) => {
     router.get('/:id', async (req, res, next) => {
       try {
-        const content = await baseService.findOne(model, req.params.id);
+        const data = await baseService.findOne(model, req.params.id);
 
-        return res.status(httpStatus.OK).json(content);
+        return res.status(httpStatus.OK).json({ success: 1, data });
       } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error: err });
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
       }
     });
   },
   insert: (router, model) => {
     router.post('/', async (req, res, next) => {
       try {
-        const content = await baseService.insert(model);
+        const data = await baseService.insert(model, req.body);
 
-        return res.status(httpStatus.OK).json({ success: 1, message: 'Operation succeed', content });
+        return res.status(httpStatus.OK).json({ success: 1, data });
       } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, message: err });
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
       }
     });
   },
   update: (router, model) => {
     router.put('/:id', async (req, res, next) => {
       try {
-        const content = await baseService.update(model, req.params.id);
+        const data = await baseService.update(model, req.params.id, req.body);
 
-        return res.status(httpStatus.OK).json(content);
+        return res.status(httpStatus.OK).json({ success: 1, data });
       } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error: err });
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
       }
     });
   },
@@ -52,9 +52,9 @@ const crudMethods = {
       try {
         await baseService.remove(model, req.params.id);
 
-        return res.status(httpStatus.OK).json({ success: 1, message: 'Operation succeed' });
+        return res.status(httpStatus.OK).json({ success: 1 });
       } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error: err });
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
       }
     });
   },

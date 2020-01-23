@@ -16,12 +16,11 @@ const service = {
         }
       ],
     })
-      .then(content => content)
+      .then(data => data)
   },
   registerProfessor: async (obj) => {
     return await sequelize.transaction(async (transaction) => {
-      const newProfessor = await Professor.create(obj, { transaction })
-        .then(res => res);
+      const newProfessor = await Professor.create(obj, { transaction });
 
       if (obj.courseId === 0) {
         return newProfessor;
@@ -33,8 +32,7 @@ const service = {
         ...obj
       };
 
-      await ProfessorCourse.create(objProfessorCourse, { transaction })
-        .then(res => res)
+      await ProfessorCourse.create(objProfessorCourse, { transaction });
 
       return newProfessor;
     });

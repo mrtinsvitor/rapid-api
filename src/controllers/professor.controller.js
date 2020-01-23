@@ -11,9 +11,9 @@ const router = express.Router();
 
 router.get('/find-by-course/:courseId', async (req, res, next) => {
   try {
-    const content = await professorService.findByCourseId(req.params.courseId);
+    const data = await professorService.findByCourseId(req.params.courseId);
 
-    return res.status(httpStatus.OK).json(content);
+    return res.status(httpStatus.OK).json({ success: 1, data });
   } catch (error) {
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
   }

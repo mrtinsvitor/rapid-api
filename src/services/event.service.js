@@ -12,14 +12,14 @@ const eventService = {
       where: { courseId },
       include: [{ all: true, nested: true }],
     })
-      .then(content => content.event)
+      .then(data => data.event)
 
     return event;
   },
   createEvent: async (createEventObj) => {
-    const content = await sequelize.transaction(async (transaction) => {
-      const newEvent = await Event.create(createEventObj, { transaction })
-        .then(res => res);
+    const transaction = await sequelize.transaction(async (t) => {
+      const newEvent = await Event.create(createEventObj, { transaction: t })
+        .then(data => data);
 
       const newEventCourse = {
         eventId: newEvent.id,
@@ -27,13 +27,13 @@ const eventService = {
         ...createEventObj
       };
 
-      await EventCourse.create(newEventCourse, { transaction })
-        .then(res => res)
+      await EventCourse.create(newEventCourse, { transaction: t })
+        .then(data => data)
 
       return newEvent;
     });
 
-    return content;
+    return transaction;
   },
   enrollEvent: async (obj) => {
     const studentEventEnrollmentObj = {
@@ -41,10 +41,10 @@ const eventService = {
       ...obj
     };
 
-    return await StudentEventEnrollment.create(studentEventEnrollmentObj).then(res => res);
+    return await StudentEventEnrollment.create(studentEventEnrollmentObj).then(data => data);
   },
   completeEvent: async (reqObj) => {
-    const transaction = await sequelize.transaction(async (t) => {
+    return await sequelize.transaction(async (t) => {
       const studentEventEnrollment = await StudentEventEnrollment.findOne({
         where: { eventId: reqObj.eventId, studentId: reqObj.studentId },
         include: [],
@@ -56,7 +56,7 @@ const eventService = {
       }
 
       if (studentEventEnrollment.participationDate) {
-        throw { error: 'Participation already checked.' };
+        throw 'Participation already checked.';
       }
 
       return await StudentEventEnrollment.update(
