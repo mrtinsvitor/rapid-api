@@ -1,4 +1,10 @@
-import { Event, EventCourse, sequelize } from '../models';
+import {
+  Event,
+  EventCourse,
+  Student,
+  StudentEventEnrollment,
+  sequelize
+} from '../models';
 
 const eventService = {
   findByCourse: async (courseId) => {
@@ -28,6 +34,41 @@ const eventService = {
     });
 
     return content;
+  },
+  enrollEvent: async (obj) => {
+    const studentEventEnrollmentObj = {
+      enrollmentDate: new Date(),
+      ...obj
+    };
+
+    return await StudentEventEnrollment.create(studentEventEnrollmentObj).then(res => res);
+  },
+  completeEvent: async (reqObj) => {
+    const transaction = await sequelize.transaction(async (t) => {
+      const studentEventEnrollment = await StudentEventEnrollment.findOne({
+        where: { eventId: reqObj.eventId, studentId: reqObj.studentId },
+        include: [],
+      });
+
+      if (!studentEventEnrollment) {
+        return await StudentEventEnrollment
+          .create(reqObj, { transaction: t });
+      }
+
+      if (studentEventEnrollment.participationDate) {
+        throw { error: 'Participation already checked.' };
+      }
+
+      return await StudentEventEnrollment.update(
+        {
+          reqObj
+        },
+        {
+          where: { id: studentEventEnrollment.id }
+        }, { transaction: t }
+      )
+
+    });
   }
 };
 

@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 
 import baseController from './baseController.controller';
 
-import { Event, EventCourse } from '../models';
+import { Event } from '../models';
 import eventService from '../services/event.service';
 
 const router = express.Router();
@@ -32,30 +32,28 @@ router.post('/create-event', async (req, res, next) => {
 
 });
 
-/* Remove Event */
-router.post('/create-event', async (req, res, next) => {
+/* Enroll Event for Students */
+router.post('/enroll', async (req, res, next) => {
   try {
-    const response = await sequelize.transaction(async (t) => {
-      await Event.create(req.body, { transaction: t })
-        .then(content => content);
+    const content = await eventService.enrollEvent(req.body);
 
-      const newEventCourse = {
-        eventId: newEvent.id,
-        courseId: req.body.courseId,
-        ...req.body
-      };
-
-      await EventCourse.create(newEventCourse, { transaction: t })
-        .then(content => content)
-
-      return newEvent;
-    });
     return res.status(httpStatus.OK)
-      .json({ success: 1, message: 'Operation succeed', response });
-  } catch (err) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, message: err })
+      .json({ success: 1, message: 'Operation succeed', content });
+  } catch (error) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, message: error });
   }
+});
 
+/* Participation Check for Students */
+router.post('/participation-check', async (req, res, next) => {
+  try {
+    const content = await eventService.completeEvent(req.body);
+
+    return res.status(httpStatus.OK)
+      .json({ success: 1, message: 'Operation succeed', content });
+  } catch (error) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, message: error });
+  }
 });
 
 baseController.findAll(router, Event);
