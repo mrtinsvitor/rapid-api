@@ -36,6 +36,14 @@ const eventService = {
     return transaction;
   },
   enrollEvent: async (obj) => {
+    const existingEnrollment = await StudentEventEnrollment.findOne(
+      { where: { eventId: obj.eventId, studentId: obj.studentId } }
+    );
+
+    if (existingEnrollment) {
+      throw 'Student already enrolled';
+    }
+
     const studentEventEnrollmentObj = {
       enrollmentDate: new Date(),
       ...obj
