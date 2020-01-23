@@ -9,7 +9,7 @@ import professorService from '../services/professor.service';
 
 const router = express.Router();
 
-router.get('/:courseId', async (req, res, next) => {
+router.get('/find-by-course/:courseId', async (req, res, next) => {
   try {
     const content = await professorService.findByCourseId(req.params.courseId);
 
