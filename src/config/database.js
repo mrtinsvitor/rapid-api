@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 export default {
   local: {
     host: 'localhost',
@@ -27,12 +29,11 @@ export default {
     },
   },
   development: {
-    uri: 'postgres://xncnzcvxhmllnl:768ff59024f4ccf4edecfa48af2fe4500b34e74d174352a4ca68a7673f97f2cd@ec2-174-129-234-111.compute-1.amazonaws.com:5432/d79vlv570h31q1',
-    host: 'ec2-174-129-234-111.compute-1.amazonaws.com',
+    host: process.env.DB_HOST,
     port: 5432,
-    database: 'd79vlv570h31q1',
-    username: 'xncnzcvxhmllnl',
-    password: '768ff59024f4ccf4edecfa48af2fe4500b34e74d174352a4ca68a7673f97f2cd',
+    database: process.env.DB_DATABASE,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
     dialect: 'postgres',
     protocol: 'postgres',
     dialectOptions: {
