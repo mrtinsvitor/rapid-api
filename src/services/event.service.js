@@ -67,15 +67,12 @@ const eventService = {
         throw 'Participation already checked.';
       }
 
-      return await StudentEventEnrollment.update(
-        {
-          reqObj
-        },
-        {
-          where: { id: studentEventEnrollment.id }
-        }, { transaction: t }
-      )
 
+      return await StudentEventEnrollment.update(
+        { participationDate: reqObj.participationDate },
+        { where: { id: studentEventEnrollment.id } },
+        { transaction: t }
+      );
     });
   }
 };

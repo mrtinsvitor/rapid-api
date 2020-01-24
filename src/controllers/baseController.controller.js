@@ -8,9 +8,10 @@ const crudMethods = {
       try {
         const data = await baseService.findAll(model);
 
-        return res.status(httpStatus.OK).json({ success: 1, data });
-      } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error })
+        return res.status(httpStatus.OK).json(data);
+      } catch (e) {
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
+          .json({ error: true, message: e });
       }
     });
   },
@@ -19,9 +20,10 @@ const crudMethods = {
       try {
         const data = await baseService.findOne(model, req.params.id);
 
-        return res.status(httpStatus.OK).json({ success: 1, data });
-      } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
+        return res.status(httpStatus.OK).json(data);
+      } catch (e) {
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
+          .json({ error: true, message: e });
       }
     });
   },
@@ -31,8 +33,9 @@ const crudMethods = {
         const data = await baseService.insert(model, req.body);
 
         return res.status(httpStatus.OK).json({ success: 1, data });
-      } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
+      } catch (e) {
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
+          .json({ error: true, message: e });
       }
     });
   },
@@ -41,9 +44,10 @@ const crudMethods = {
       try {
         const data = await baseService.update(model, req.params.id, req.body);
 
-        return res.status(httpStatus.OK).json({ success: 1, data });
-      } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
+        return res.status(httpStatus.OK).json(data);
+      } catch (e) {
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
+          .json({ error: true, message: e });
       }
     });
   },
@@ -52,9 +56,10 @@ const crudMethods = {
       try {
         await baseService.remove(model, req.params.id);
 
-        return res.status(httpStatus.OK).json({ success: 1 });
-      } catch (error) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: 0, error });
+        return res.status(httpStatus.OK)
+      } catch (e) {
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
+          .json({ error: 0, message: e });
       }
     });
   },
