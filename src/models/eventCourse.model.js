@@ -27,7 +27,10 @@ export default (sequelize, DataTypes) => {
     EventCourse.belongsTo(models.Event, {
       foreignKey: {
         field: 'id_event',
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: true
+        }
       },
       as: 'event'
     });

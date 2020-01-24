@@ -14,6 +14,10 @@ export default (sequelize, DataTypes) => {
         field: 'nm_local',
         type: DataTypes.STRING(120),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o nome do local. ' },
+          notEmpty: true
+        }
       },
       room: {
         field: 'cd_room',

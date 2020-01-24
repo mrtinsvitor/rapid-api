@@ -16,6 +16,10 @@ export default (sequelize, DataTypes) => {
         field: 'nm_first_name',
         type: DataTypes.STRING(20),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o primeiro nome. ' },
+          notEmpty: true
+        }
       },
       lastName: {
         field: 'nm_last_name',
@@ -31,11 +35,20 @@ export default (sequelize, DataTypes) => {
         field: 'tx_email',
         type: DataTypes.STRING(320),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o e-mail. ' },
+          notEmpty: true,
+          isEmail: true
+        }
       },
       password: {
         field: 'tx_password',
         type: DataTypes.STRING(30),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar uma senha. ' },
+          notEmpty: true
+        }
       },
     },
     {
@@ -49,7 +62,7 @@ export default (sequelize, DataTypes) => {
     User.belongsTo(models.Profile, {
       foreignKey: {
         field: 'id_profile',
-        allowNull: false
+        allowNull: false,
       },
       as: 'profile'
     });

@@ -14,6 +14,10 @@ export default (sequelize, DataTypes) => {
         field: 'nm_profile',
         type: DataTypes.STRING(40),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o nome do perfil. ' },
+          notEmpty: true
+        }
       },
       insertionUserId: {
         field: 'id_insertion_user',

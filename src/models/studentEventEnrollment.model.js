@@ -14,7 +14,7 @@ export default (sequelize, DataTypes) => {
         field: 'dh_enrollment',
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: sequelize.NOW
+        defaultValue: sequelize.NOW,
       },
       participationDate: {
         field: 'dh_participation',

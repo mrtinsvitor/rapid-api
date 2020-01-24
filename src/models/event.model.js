@@ -14,11 +14,19 @@ export default (sequelize, DataTypes) => {
         field: 'nm_event',
         type: DataTypes.STRING(120),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o nome do evento.' },
+          notEmpty: true,
+        }
       },
       description: {
         field: 'tx_description',
         type: DataTypes.TEXT,
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar a descrição do evento.' },
+          notEmpty: true,
+        }
       },
       targetAudience: {
         field: 'tx_target_audience',
@@ -29,16 +37,26 @@ export default (sequelize, DataTypes) => {
         field: 'qt_vacancy',
         type: DataTypes.INTEGER,
         allowNull: true,
+        validate: {
+          isInt: true
+        }
       },
       complementaryHours: {
         field: 'qt_hours',
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar a quantidade horas complementares do evento.' },
+          isInt: true
+        }
       },
       enrollmentValue: {
         field: 'vl_enrollment',
         type: DataTypes.DECIMAL,
         allowNull: true,
+        validate: {
+          isDecimal: { msg: 'O valor deve ser no formato decimal.' }
+        }
       },
       coverPhoto: {
         field: 'ph_cover',
@@ -49,21 +67,34 @@ export default (sequelize, DataTypes) => {
         field: 'dt_event',
         type: DataTypes.DATEONLY,
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar a data do evento.' },
+          isAfter: new Date()
+        }
       },
       enrollmentEndingDate: {
         field: 'dt_enrollment_ending',
         type: DataTypes.DATE,
         allowNull: true,
+        validate: {
+          isAfter: new Date()
+        }
       },
       openingHour: {
         field: 'hr_opening',
         type: DataTypes.TIME,
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar a hora de abertura do evento.' }
+        }
       },
       endingHour: {
         field: 'hr_ending',
         type: DataTypes.TIME,
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar a hora de fechamento do evento.' }
+        }
       },
       insertionUserId: {
         field: 'id_insertion_user',
@@ -82,7 +113,10 @@ export default (sequelize, DataTypes) => {
     Event.belongsTo(models.Local, {
       foreignKey: {
         field: 'id_local',
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o local do evento.' }
+        }
       },
       as: 'local'
     });

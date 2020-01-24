@@ -13,7 +13,10 @@ export default (sequelize, DataTypes) => {
       name: {
         field: 'nm_course',
         type: DataTypes.STRING(80),
-        allowNull: true,
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o nome do curso.' }
+        }
       },
       insertionUserId: {
         field: 'id_insertion_user',
@@ -32,7 +35,10 @@ export default (sequelize, DataTypes) => {
     Course.belongsTo(models.Professor, {
       foreignKey: {
         field: 'id_coordinator',
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o coordenador do curso.' }
+        }
       },
       as: 'coordinator'
     });

@@ -14,6 +14,9 @@ export default (sequelize, DataTypes) => {
         field: 'qt_complementary_hours',
         type: DataTypes.INTEGER,
         allowNull: true,
+        validate: {
+          isNumeric: { msg: 'A quantidade de horas não é um número.' }
+        }
       },
       insertionUserId: {
         field: 'id_insertion_user',
@@ -40,7 +43,10 @@ export default (sequelize, DataTypes) => {
     Student.belongsTo(models.Course, {
       foreignKey: {
         field: 'id_course',
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o curso.' }
+        }
       },
       as: 'course'
     });

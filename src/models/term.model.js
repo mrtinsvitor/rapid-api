@@ -14,11 +14,19 @@ export default (sequelize, DataTypes) => {
         field: 'cd_term',
         type: DataTypes.STRING(2),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o código do período. ' },
+          notEmpty: true
+        }
       },
       name: {
         field: 'nm_term',
         type: DataTypes.STRING(20),
         allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o nome do período. ' },
+          notEmpty: true
+        }
       },
       insertionUserId: {
         field: 'id_insertion_user',
