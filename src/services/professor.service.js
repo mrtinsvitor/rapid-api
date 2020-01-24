@@ -15,36 +15,18 @@ const service = {
           as: 'course'
         }
       ],
-    })
-      .then(data => data)
+    });
   },
   registerProfessor: async (obj) => {
     return await sequelize.transaction(async (transaction) => {
-      const newProfessor = await Professor.create(obj, { transaction });
+      const newUser = await User.create({ profileId: 3, ...obj }, { transaction });
 
-      if (obj.courseId === 0) {
-        return newProfessor;
-      }
-
-      const objProfessorCourse = {
-        professorId: newProfessor.id,
-        courseId: obj.courseId,
-        ...obj
-      };
-
-      await ProfessorCourse.create(objProfessorCourse, { transaction });
-
-      return newProfessor;
+      return await Professor.create(
+        { userId: newUser.id, ...obj },
+        { transaction }
+      );
     });
   },
-  // putProfessorCourses: async (obj) => {
-  //   return await sequelize.transaction(async (transaction) => {
-  //     obj.courses.map((course, i) => {
-  //       await ProfessorCourse.create(objProfessorCourse, { transaction })
-  //         .then(res => res)
-  //     });
-  //   })
-  // }
 };
 
 export default service;
