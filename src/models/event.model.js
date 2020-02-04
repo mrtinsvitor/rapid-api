@@ -69,7 +69,7 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: { msg: 'É necessário informar a data do evento.' },
-          isAfter: new Date()
+          // isAfter: new Date()
         }
       },
       enrollmentEndingDate: {
