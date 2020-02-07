@@ -1,20 +1,17 @@
 import {
   Event,
   EventCourse,
-  Student,
   StudentEventEnrollment,
   sequelize
 } from '../models';
+import ErrorHandler from '../helpers/ErrorHandler';
 
 const eventService = {
   findByCourse: async (courseId) => {
-    const event = await EventCourse.findOne({
+    return await EventCourse.findAll({
       where: { courseId },
       include: [{ all: true, nested: true }],
-    })
-      .then(data => data.event)
-
-    return event;
+    });
   },
   createEvent: async (createEventObj) => {
     const transaction = await sequelize.transaction(async (t) => {
