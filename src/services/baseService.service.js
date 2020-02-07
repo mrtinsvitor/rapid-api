@@ -1,26 +1,21 @@
 const baseService = {
-  findAll: (model) => {
-    return model.findAll({
+  findAll: async (model) => {
+    return await model.findAll({
       include: [],
-    })
-      .then(data => data)
+    });
   },
-  findOne: (model, id) => {
-    return model.findByPk(id)
-      .then(data => data)
+  findOne: async (model, id) => {
+    return await model.findByPk(id);
   },
-  insert: (model, reqBody) => {
-    return model.create(reqBody)
-      .then(data => data);
+  insert: async (model, reqBody) => {
+    return model.create(reqBody);
   },
-  update: (model, id, reqBody) => {
-    return model.update({ reqBody }, { where: { id } })
-      .then(data => data)
+  update: async (model, id, reqBody) => {
+    return model.update({ reqBody }, { where: { id } });
   },
-  remove: (model, id) => {
-    return model.findByPk(id).then(data =>
-      data.destroy()
-    );
+  remove: async (model, id) => {
+    const data = await model.findByPk(id);
+    return await data.destroy();
   },
 };
 
