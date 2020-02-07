@@ -10,8 +10,7 @@ const crudMethods = {
 
         return res.status(httpStatus.OK).json(data);
       } catch (e) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-          .json({ error: true, message: e });
+        next(e);
       }
     });
   },
@@ -22,8 +21,7 @@ const crudMethods = {
 
         return res.status(httpStatus.OK).json(data);
       } catch (e) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-          .json({ error: true, message: e });
+        next(e);
       }
     });
   },
@@ -34,8 +32,7 @@ const crudMethods = {
 
         return res.status(httpStatus.OK).json({ success: 1, data });
       } catch (e) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-          .json({ error: true, message: e });
+        next(e);
       }
     });
   },
@@ -46,8 +43,7 @@ const crudMethods = {
 
         return res.status(httpStatus.OK).json(data);
       } catch (e) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-          .json({ error: true, message: e });
+        next(e);
       }
     });
   },
@@ -58,8 +54,7 @@ const crudMethods = {
 
         return res.status(httpStatus.OK)
       } catch (e) {
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-          .json({ error: 0, message: e });
+        next(e);
       }
     });
   },

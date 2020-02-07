@@ -15,8 +15,7 @@ router.post('/new-student', async (req, res, next) => {
 
     return res.status(httpStatus.OK).json(data);
   } catch (e) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: true, message: e });
+    next(e);
   }
 });
 

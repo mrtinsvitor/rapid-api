@@ -15,8 +15,7 @@ router.get('/find-by-course/:courseId', async (req, res, next) => {
 
     return res.status(httpStatus.OK).json(data);
   } catch (e) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: true, message: e });
+    next(e);
   }
 });
 
@@ -28,8 +27,7 @@ router.post('/create-event', async (req, res, next) => {
     return res.status(httpStatus.OK)
       .json({ message: 'Event created', data });
   } catch (e) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: true, message: e });
+    next(e);
   }
 
 });
@@ -42,8 +40,7 @@ router.post('/enroll', async (req, res, next) => {
     return res.status(httpStatus.OK)
       .json({ message: 'Operation completed with success', data });
   } catch (e) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: true, message: e });
+    next(e);
   }
 });
 
@@ -55,8 +52,7 @@ router.post('/participation-check', async (req, res, next) => {
     return res.status(httpStatus.OK)
       .json({ message: 'Operation completed with success', updatedValues: data });
   } catch (e) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: true, message: e });
+    next(e);
   }
 });
 

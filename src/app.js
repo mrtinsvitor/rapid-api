@@ -7,6 +7,8 @@ import cors from 'cors';
 
 import indexRouter from './routes/index';
 
+import { handleError } from './helpers/ErrorHandler';
+
 const app = express();
 
 app.use(logger('dev'));
@@ -21,6 +23,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
 
-app.use((req, res, next) => next());
+app.use((err, req, res, next) => handleError(err, res));
 
 export default app;
