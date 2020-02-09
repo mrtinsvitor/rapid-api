@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/mrtins/unievents-api#readme",
   "dependencies": {
+    "@babel/runtime": "^7.8.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
@@ -44,8 +45,8 @@
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
     "@babel/node": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "nodemon": "^2.0.2"
   }
 }
