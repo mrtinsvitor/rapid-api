@@ -20,11 +20,6 @@ export default (sequelize, DataTypes) => {
         field: 'dh_participation',
         type: DataTypes.DATE,
         allowNull: true,
-      },
-      insertionUserId: {
-        field: 'id_insertion_user',
-        type: DataTypes.BIGINT,
-        allowNull: false,
       }
     },
     {
