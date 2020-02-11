@@ -19,20 +19,10 @@ router.get('/find-by-course/:courseId', async (req, res, next) => {
   }
 });
 
-router.post('/new-professor', async (req, res, next) => {
-  try {
-    const data = await professorService.registerProfessor(req.body);
-
-    return res.status(httpStatus.OK)
-      .json({ message: 'Operation completed with success', data });
-  } catch (e) {
-    next(e);
-  }
-});
-
 /* Generic CRUD methods. Implement new methods above */
 baseController.findAll(router, Professor);
 baseController.findOne(router, Professor);
+baseController.insert(router, Professor);
 baseController.update(router, Professor);
 
 export default router;

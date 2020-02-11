@@ -17,11 +17,6 @@ export default (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: 'É necessário informar o nome do curso.' }
         }
-      },
-      insertionUserId: {
-        field: 'id_insertion_user',
-        type: DataTypes.BIGINT,
-        allowNull: false,
       }
     },
     {
@@ -34,13 +29,24 @@ export default (sequelize, DataTypes) => {
     /* Pertence */
     Course.belongsTo(models.Professor, {
       foreignKey: {
-        field: 'id_coordinator',
+        field: 'id_professor_coordinator',
         allowNull: false,
         validate: {
           notNull: { msg: 'É necessário informar o coordenador do curso.' }
         }
       },
       as: 'coordinator'
+    });
+
+    Course.belongsTo(models.StudyField, {
+      foreignKey: {
+        field: 'id_study_field',
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar a área de conhecimento.' }
+        }
+      },
+      as: 'studyField'
     });
   }
 

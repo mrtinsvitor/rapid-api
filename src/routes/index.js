@@ -10,7 +10,7 @@ import profile from '../controllers/profile.controller';
 import student from '../controllers/student.controller';
 import studentEventEnrollment from '../controllers/studentEventEnrollment.controller';
 import term from '../controllers/term.controller';
-import user from '../controllers/user.controller';
+import studyField from '../controllers/studyField.controller';
 
 const router = express();
 
@@ -26,6 +26,6 @@ router.use('/profiles', profile);
 router.use('/students', student);
 router.use('/student-event-enrollments', studentEventEnrollment);
 router.use('/terms', term);
-router.use('/users', user);
+router.use('/study-fields', studyField);
 
 export default router;

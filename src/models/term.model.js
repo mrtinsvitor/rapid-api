@@ -27,11 +27,6 @@ export default (sequelize, DataTypes) => {
           notNull: { msg: 'É necessário informar o nome do período. ' },
           notEmpty: true
         }
-      },
-      insertionUserId: {
-        field: 'id_insertion_user',
-        type: DataTypes.BIGINT,
-        allowNull: false,
       }
     },
     {

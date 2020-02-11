@@ -9,24 +9,18 @@ export default (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
-      },
-      insertionUserId: {
-        field: 'id_insertion_user',
-        type: DataTypes.BIGINT,
-        allowNull: false,
       }
     },
     {
       schema: eventsSchema,
       tableName: 'tb_professor_course',
-      defaultScope: {
-        attributes: { exclude: ['professorId', 'courseId'] },
-      },
+      // defaultScope: {
+      //   attributes: { exclude: ['professorId', 'courseId'] },
+      // },
     }
   );
 
   ProfessorCourse.associate = function (models) {
-    /* Pertence */
     ProfessorCourse.belongsTo(models.Professor, {
       foreignKey: {
         field: 'id_professor',

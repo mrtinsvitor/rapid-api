@@ -43,11 +43,6 @@ export default (sequelize, DataTypes) => {
         field: 'tx_complement',
         type: DataTypes.STRING(220),
         allowNull: true,
-      },
-      insertionUserId: {
-        field: 'id_insertion_user',
-        type: DataTypes.BIGINT,
-        allowNull: false,
       }
     },
     {

@@ -10,6 +10,41 @@ export default (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
+      firstName: {
+        field: 'nm_first_name',
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o primeiro nome. ' },
+          notEmpty: true
+        }
+      },
+      lastName: {
+        field: 'nm_last_name',
+        type: DataTypes.STRING(80),
+        allowNull: true,
+      },
+      enrollment: {
+        field: 'cd_enrollment',
+        type: DataTypes.STRING(60),
+        allowNull: false,
+        // autoIncrement: true,
+      },
+      email: {
+        field: 'tx_email',
+        type: DataTypes.STRING(254),
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o e-mail. ' },
+          notEmpty: true,
+          isEmail: true
+        }
+      },
+      password: {
+        field: 'tx_password',
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
       complementaryHours: {
         field: 'qt_complementary_hours',
         type: DataTypes.INTEGER,
@@ -17,11 +52,6 @@ export default (sequelize, DataTypes) => {
         validate: {
           isNumeric: { msg: 'A quantidade de horas não é um número.' }
         }
-      },
-      insertionUserId: {
-        field: 'id_insertion_user',
-        type: DataTypes.BIGINT,
-        allowNull: false,
       }
     },
     {
@@ -31,15 +61,6 @@ export default (sequelize, DataTypes) => {
   );
 
   Student.associate = function (models) {
-    /* Pertence */
-    Student.belongsTo(models.User, {
-      foreignKey: {
-        field: 'id_user',
-        allowNull: false
-      },
-      as: 'user'
-    });
-
     Student.belongsTo(models.Course, {
       foreignKey: {
         field: 'id_course',

@@ -30,7 +30,7 @@ export default (sequelize, DataTypes) => {
       },
       targetAudience: {
         field: 'tx_target_audience',
-        type: DataTypes.STRING(160),
+        type: DataTypes.STRING(220),
         allowNull: true,
       },
       vacancy: {
@@ -44,9 +44,8 @@ export default (sequelize, DataTypes) => {
       complementaryHours: {
         field: 'qt_hours',
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate: {
-          notNull: { msg: 'É necessário informar a quantidade horas complementares do evento.' },
           isInt: true
         }
       },
@@ -69,7 +68,6 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: { msg: 'É necessário informar a data do evento.' },
-          // isAfter: new Date()
         }
       },
       enrollmentEndingDate: {
@@ -95,11 +93,6 @@ export default (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: 'É necessário informar a hora de fechamento do evento.' }
         }
-      },
-      insertionUserId: {
-        field: 'id_insertion_user',
-        type: DataTypes.BIGINT,
-        allowNull: false,
       }
     },
     {
@@ -123,8 +116,11 @@ export default (sequelize, DataTypes) => {
 
     Event.belongsTo(models.Professor, {
       foreignKey: {
-        field: 'id_professor',
-        allowNull: true
+        field: 'id_host_professor',
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar o professor organizador.' }
+        }
       },
       as: 'professor'
     });
