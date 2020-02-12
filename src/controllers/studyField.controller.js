@@ -7,6 +7,7 @@ import { StudyField } from '../models';
 const router = express.Router();
 
 /* Generic CRUD methods. Implement new methods above */
-baseController.setAllCrudMethods(router, StudyField);
+baseController.findAll(router, StudyField);
+baseController.findOne(router, StudyField);
 
 export default router;

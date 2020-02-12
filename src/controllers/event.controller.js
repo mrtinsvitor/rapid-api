@@ -58,5 +58,6 @@ router.post('/participation-check', async (req, res, next) => {
 
 baseController.findAll(router, Event);
 baseController.findOne(router, Event);
+baseController.update(router, Event);
 
 export default router;
