@@ -57,16 +57,18 @@ const eventService = {
 
       if (!studentEventEnrollment) {
         return await StudentEventEnrollment
-          .create(reqObj, { transaction: t });
+          .create(
+            { participationDate: new Date(), ...reqObj },
+            { transaction: t }
+          );
       }
 
       if (studentEventEnrollment.participationDate) {
         throw 'Participation already checked.';
       }
 
-
       return await StudentEventEnrollment.update(
-        { participationDate: reqObj.participationDate },
+        { participationDate: new Date() },
         { where: { id: studentEventEnrollment.id } },
         { transaction: t }
       );
