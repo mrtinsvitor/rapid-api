@@ -5,6 +5,7 @@ import baseController from './baseController.controller';
 
 import { Event } from '../models';
 import eventService from '../services/event.service';
+import studentEventEnrollment from '../services/studentEventEnrollment.service';
 
 const router = express.Router();
 
@@ -51,6 +52,17 @@ router.post('/participation-check', async (req, res, next) => {
 
     return res.status(httpStatus.OK)
       .json({ message: 'Operation completed with success', updatedValues: data });
+  } catch (e) {
+    next(e);
+  }
+});
+
+/* Find all Students enrolled in an given event */
+router.get('/find-all/students/enrolled/:eventId', async (req, res, next) => {
+  try {
+    const data = await studentEventEnrollment.findByEvent(req.params.eventId);
+
+    return res.status(httpStatus.OK).json(data);
   } catch (e) {
     next(e);
   }

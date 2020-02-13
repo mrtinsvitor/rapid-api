@@ -22,7 +22,7 @@ export const handleError = (err, res) => {
       status: httpStatus[`${statusCode}_NAME`]
     });
   }
-
+  console.log('Internal Error: ' + err)
   return res.status(httpStatus.INTERNAL_SERVER_ERROR)
     .json(new ErrorHandler());
 

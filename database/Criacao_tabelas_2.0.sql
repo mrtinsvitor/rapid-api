@@ -38,7 +38,6 @@ create table evt.tb_professor (
 	nm_last_name			varchar(80)		null,
 	cd_enrollment			serial			not null,
 	tx_email				varchar(254)	not null,
-	tx_password				varchar(30)		null,
 	dh_insertion			timestamp		NOT NULL,
 	dh_update				timestamp		null
 );
@@ -79,7 +78,6 @@ create table evt.tb_student (
 	nm_last_name				varchar(80)		null,
 	cd_enrollment				serial			not null,
 	tx_email					varchar(254)	not null,
-	tx_password					varchar(30)		null,
 	qt_complementary_hours		int				NULL,
 	dh_insertion				timestamp		NOT NULL,
 	dh_update					timestamp		null

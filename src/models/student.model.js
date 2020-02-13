@@ -40,11 +40,6 @@ export default (sequelize, DataTypes) => {
           isEmail: true
         }
       },
-      password: {
-        field: 'tx_password',
-        type: DataTypes.STRING(30),
-        allowNull: true,
-      },
       complementaryHours: {
         field: 'qt_complementary_hours',
         type: DataTypes.INTEGER,
@@ -56,7 +51,10 @@ export default (sequelize, DataTypes) => {
     },
     {
       schema: eventsSchema,
-      tableName: 'tb_student'
+      tableName: 'tb_student',
+      defaultScope: {
+        attributes: { exclude: ['firstName'] }
+      }
     }
   );
 

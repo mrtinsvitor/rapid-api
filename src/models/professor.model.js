@@ -40,11 +40,6 @@ export default (sequelize, DataTypes) => {
           isEmail: true
         }
       },
-      password: {
-        field: 'tx_password',
-        type: DataTypes.STRING(30),
-        allowNull: true,
-      },
     },
     {
       schema: eventsSchema,
