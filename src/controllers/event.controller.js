@@ -9,6 +9,17 @@ import studentEventEnrollment from '../services/studentEventEnrollment.service';
 
 const router = express.Router();
 
+/* Find Event by ID */
+router.get('/:id', async (req, res, next) => {
+  try {
+    const data = await eventService.findById(req.params.id);
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
 /* Find Events by Course */
 router.get('/find-by-course/:courseId', async (req, res, next) => {
   try {
@@ -69,7 +80,6 @@ router.get('/find-all/students/enrolled/:eventId', async (req, res, next) => {
 });
 
 baseController.findAll(router, Event);
-baseController.findOne(router, Event);
 baseController.update(router, Event);
 
 export default router;

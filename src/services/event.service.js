@@ -4,9 +4,14 @@ import {
   StudentEventEnrollment,
   sequelize
 } from '../models';
-import ErrorHandler from '../helpers/ErrorHandler';
 
 const eventService = {
+  findById: async (id) => {
+    return await Event.findAll({
+      where: { id },
+      include: [{ all: true, nested: true }],
+    });
+  },
   findByCourse: async (courseId) => {
     return await EventCourse.findAll({
       where: { courseId },
