@@ -53,7 +53,7 @@ export default (sequelize, DataTypes) => {
       schema: eventsSchema,
       tableName: 'tb_student',
       defaultScope: {
-        attributes: { exclude: ['firstName'] }
+        attributes: { exclude: [] }
       }
     }
   );
