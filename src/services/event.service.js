@@ -5,10 +5,10 @@ import {
   sequelize
 } from '../models';
 
+
 const eventService = {
   findById: async (id) => {
-    return await Event.findAll({
-      where: { id },
+    return await Event.findByPk(id, {
       include: [{ all: true, nested: true }],
     });
   },

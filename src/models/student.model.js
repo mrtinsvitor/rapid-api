@@ -47,7 +47,12 @@ export default (sequelize, DataTypes) => {
         validate: {
           isNumeric: { msg: 'A quantidade de horas não é um número.' }
         }
-      }
+      },
+      profilePhoto: {
+        field: 'ph_photo',
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
     },
     {
       schema: eventsSchema,

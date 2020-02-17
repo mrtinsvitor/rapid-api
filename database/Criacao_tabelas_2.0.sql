@@ -38,6 +38,7 @@ create table evt.tb_professor (
 	nm_last_name			varchar(80)		null,
 	cd_enrollment			serial			not null,
 	tx_email				varchar(254)	not null,
+	ph_photo				text			null,
 	dh_insertion			timestamp		NOT NULL,
 	dh_update				timestamp		null
 );
@@ -68,8 +69,6 @@ create table evt.tb_course (
 alter table evt.tb_course add constraint pk_course primary key (id_course);
 alter table evt.tb_course add constraint fk_course_coordinator foreign key (id_professor_coordinator) references evt.tb_professor(id_professor);
 alter table evt.tb_course add constraint fk_course_study_field foreign key (id_study_field) references evt.tb_study_field(id_study_field);
-
-
 create table evt.tb_student (
 	id_student 					serial 			not null,
 	id_course 					int				not null,
@@ -79,6 +78,7 @@ create table evt.tb_student (
 	cd_enrollment				serial			not null,
 	tx_email					varchar(254)	not null,
 	qt_complementary_hours		int				NULL,
+	ph_photo					text			null,
 	dh_insertion				timestamp		NOT NULL,
 	dh_update					timestamp		null
 );

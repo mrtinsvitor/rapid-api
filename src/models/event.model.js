@@ -59,7 +59,7 @@ export default (sequelize, DataTypes) => {
       },
       coverPhoto: {
         field: 'ph_cover',
-        type: DataTypes.BLOB('medium'),
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       eventDate: {

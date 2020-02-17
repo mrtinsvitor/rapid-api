@@ -40,6 +40,11 @@ export default (sequelize, DataTypes) => {
           isEmail: true
         }
       },
+      profilePhoto: {
+        field: 'ph_photo',
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
     },
     {
       schema: eventsSchema,
