@@ -37,25 +37,19 @@ export default (sequelize, DataTypes) => {
         field: 'qt_vacancy',
         type: DataTypes.INTEGER,
         allowNull: true,
-        validate: {
-          isInt: true
-        }
       },
       complementaryHours: {
         field: 'qt_hours',
         type: DataTypes.INTEGER,
         allowNull: true,
-        validate: {
-          isInt: true
-        }
       },
       enrollmentValue: {
         field: 'vl_enrollment',
         type: DataTypes.DECIMAL,
         allowNull: true,
-        validate: {
-          isDecimal: { msg: 'O valor deve ser no formato decimal.' }
-        }
+        // validate: {
+        //   isDecimal: { msg: 'O valor deve ser no formato decimal.' }
+        // }
       },
       coverPhoto: {
         field: 'ph_cover',

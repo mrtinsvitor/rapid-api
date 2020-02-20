@@ -1,15 +1,15 @@
 
 INSERT INTO evt.tb_professor
-(nm_first_name, nm_last_name, tx_email, tx_password, dh_insertion)
-VALUES('Admin', 'Admin', 'admin@admin.com', null, now());
+(nm_first_name, nm_last_name, tx_email, dh_insertion)
+VALUES('Admin', 'Admin', 'admin@admin.com', now());
 
 INSERT INTO evt.tb_professor
-(nm_first_name, nm_last_name, tx_email, tx_password, dh_insertion)
-VALUES('Daniel', 'De Oliveira', 'daniel@gmail.com', null, now());
+(nm_first_name, nm_last_name, tx_email, dh_insertion)
+VALUES('Daniel', 'De Oliveira', 'daniel@gmail.com', now());
 
 INSERT INTO evt.tb_professor
-(nm_first_name, nm_last_name, tx_email, tx_password, dh_insertion)
-VALUES('Anderson', 'Nascimento', 'anderson@gmail.com', null, now());
+(nm_first_name, nm_last_name, tx_email, dh_insertion)
+VALUES('Anderson', 'Nascimento', 'anderson@gmail.com', now());
 
 -- TB_Term
 INSERT INTO evt.tb_term
@@ -180,4 +180,34 @@ VALUES(1, 1, 'Admin', 'Admin', 'admin@admin.com', 10, now());
 INSERT INTO evt.tb_student
 (id_course, id_term, nm_first_name, nm_last_name, tx_email, qt_complementary_hours, dh_insertion)
 VALUES(45, 8, 'Vitor', 'Figueira Martins', 'vitorfigmartins@gmail.com', 200, now());
+
+
+-- TB_Event
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 23, 'suspendisse potenti cras in purus eu magna vulputate luctus cum', 'consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere', 'nec condimentum neque sapien placerat', 100, 23, '2019-08-13', '9:00', '12:00', '2019-04-30');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 42, 'quam pede lobortis ligula', 'aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat', 'tincidunt eu felis', 61, 30, '2019-05-26', '9:00', '12:00', '2019-03-17');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 43, 'dui maecenas tristique est et tempus semper', 'posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede', 'eget rutrum at lorem', 63, 27, '2019-05-22', '9:00', '12:00', '2019-07-19');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 43, 'convallis duis consequat dui nec nisi', 'convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet', 'vel nulla eget eros elementum pellentesque quisque porta volutpat erat', 33, 29, '2019-08-08', '9:00', '12:00', '2020-01-29');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 41, 'cras in purus eu magna', 'vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut', 'proin', 39, 14, '2020-05-15', '9:00', '12:00', '2019-04-01');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 33, 'turpis integer aliquet massa id lobortis convallis tortor risus', 'in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl', 'fusce', 27, 28, '2019-09-25', '9:00', '12:00', '2019-05-07');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 15, 'consequat dui nec nisi volutpat eleifend', 'hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc', 'nulla sed vel enim sit', 80, 23, '2019-07-28', '9:00', '12:00', '2019-03-18');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 37, 'sit amet erat nulla tempus vivamus', 'sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet', 'ut ultrices vel augue vestibulum ante ipsum primis', 65, 23, '2019-06-12', '9:00', '12:00', '2019-08-06');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 21, 'sapien iaculis congue vivamus metus arcu adipiscing', 'donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum', 'consectetuer eget rutrum at lorem integer tincidunt ante vel', 28, 19, '2019-04-10', '9:00', '12:00', '2019-05-10');
+insert into evt.tb_event (id_local, id_host_professor, nm_event, tx_description, tx_target_audience, qt_vacancy, qt_hours, dt_event, hr_opening, hr_ending, dh_insertion) values (1, 35, 'ac nibh fusce lacus purus aliquet', 'ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et', 'lorem ipsum dolor sit amet', 74, 11, '2019-04-09', '9:00', '12:00', '2019-11-18');
+
+-- TB_Event_Course
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (8, 26, '2020-01-07');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (2, 8, '2019-05-25');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (6, 16, '2019-02-23');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (8, 1, '2019-11-17');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (6, 31, '2019-10-19');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (2, 20, '2019-11-19');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (6, 42, '2019-07-24');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (8, 21, '2019-08-18');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (4, 32, '2019-08-22');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (8, 41, '2019-07-21');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (11, 14, '2019-11-24');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (4, 44, '2020-01-05');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (7, 43, '2019-06-10');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (4, 4, '2019-04-10');
+insert into evt.tb_event_course (id_event, id_course, dh_insertion) values (10, 17, '2019-06-04');
 
