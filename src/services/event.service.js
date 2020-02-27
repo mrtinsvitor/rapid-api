@@ -21,18 +21,19 @@ const eventService = {
   createEvent: async (createEventObj) => {
     const transaction = await sequelize.transaction(async (t) => {
       const newEvent = await Event.create(createEventObj, { transaction: t })
-        .then(data => data);
 
-      const newEventCourse = {
-        eventId: newEvent.id,
-        courseId: createEventObj.courseId,
-        ...createEventObj
+      let promises = []
+      for (const i = 0; i < createEventObj.courseList.length; i++) {
+        const newEventCourse = {
+          eventId: newEvent.id,
+          courseId: createEventObj.courseList[i].id,
+        };
+
+        const newPromise = EventCourse.create(newEventCourse, { transaction: t });
+        promises.push(newPromise);
       };
 
-      await EventCourse.create(newEventCourse, { transaction: t })
-        .then(data => data)
-
-      return newEvent;
+      return Promise.all(promises).then(function (event) { return newEvent });
     });
 
     return transaction;
