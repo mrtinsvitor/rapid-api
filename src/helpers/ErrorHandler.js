@@ -27,11 +27,7 @@ export const handleError = (err, res) => {
     });
   }
 
-  if (err.errors !== null
-    && err.errors.length > 0
-    && err.errors[0] !== null
-    && err.name === 'SequelizeValidationError'
-  ) {
+  if (err.name === 'SequelizeValidationError') {
     return handleValidationError(err, res);
   }
 

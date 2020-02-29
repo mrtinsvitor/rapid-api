@@ -13,6 +13,7 @@ class ValidationError extends Error {
 export const handleValidationError = (err, res) => {
   const invalidFields = err.errors.map(error => {
     console.log(`[${new Date()}][Validation Error]: ${error.message}`);
+    
     return { field: error.path, reason: error.message };
   });
 
