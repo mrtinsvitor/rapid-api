@@ -6,6 +6,7 @@ import baseController from './baseController.controller';
 import { Event } from '../models';
 import eventService from '../services/event.service';
 import studentEventEnrollment from '../services/studentEventEnrollment.service';
+import { removeEmpty } from '../utils/JsonUtils';
 
 const router = express.Router();
 
@@ -34,7 +35,7 @@ router.get('/find-by-course/:courseId', async (req, res, next) => {
 /* Create a new event */
 router.post('/create-event', async (req, res, next) => {
   try {
-    const data = await eventService.createEvent(req.body);
+    const data = await eventService.createEvent(removeEmpty(req.body));
 
     return res.status(httpStatus.OK)
       .json({ message: 'Event created', data });

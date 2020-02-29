@@ -23,7 +23,7 @@ const eventService = {
       const newEvent = await Event.create(createEventObj, { transaction: t })
 
       let promises = []
-      for (const i = 0; i < createEventObj.courseList.length; i++) {
+      for (let i = 0; i < createEventObj.courseList.length; i++) {
         const newEventCourse = {
           eventId: newEvent.id,
           courseId: createEventObj.courseList[i].id,
