@@ -21,7 +21,7 @@ router.get('/find-by-course/:courseId', async (req, res, next) => {
 
 router.get('/find-by-email', async (req, res, next) => {
   try {
-    const data = await professorService.findByEmail(req.body.email);
+    const data = await professorService.findByEmail(req.query.email);
 
     return res.status(httpStatus.OK).json(data);
   } catch (e) {
