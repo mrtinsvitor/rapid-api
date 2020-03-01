@@ -16,6 +16,11 @@ const service = {
       ],
     });
   },
+  findByEmail: async (email) => {
+    return await Professor.findOne({
+      where: { email },
+    });
+  },
 };
 
 export default service;
