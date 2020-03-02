@@ -18,6 +18,12 @@ const eventService = {
       include: [{ all: true, nested: true }],
     });
   },
+  findByHostProfessor: async (professorId) => {
+    return await Event.findAll({
+      where: { professorId },
+      include: [],
+    });
+  },
   createEvent: async (createEventObj) => {
     const transaction = await sequelize.transaction(async (t) => {
       const newEvent = await Event.create(createEventObj, { transaction: t })

@@ -80,6 +80,17 @@ router.get('/find-all/students/enrolled/:eventId', async (req, res, next) => {
   }
 });
 
+/* Find all Events by Host Professor */
+router.get('/find-all/professor/host/:professorId', async (req, res, next) => {
+  try {
+    const data = await eventService.findByHostProfessor(req.params.professorId);
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
 baseController.findAll(router, Event);
 baseController.update(router, Event);
 
