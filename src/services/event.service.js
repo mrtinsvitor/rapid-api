@@ -24,7 +24,7 @@ const eventService = {
 
       const courseIds = studyFieldCourses.map(course => course.id);
 
-      return await EventCourse.findAll({
+      const eventList = await EventCourse.findAll({
         where: { courseId: courseIds },
         include: [
           {
@@ -40,6 +40,7 @@ const eventService = {
         ],
       });
 
+      return eventList.sort((a, b) => new Date(a.event.eventDate) - new Date(b.event.eventDate));
     } catch (e) {
       throw e;
     }
