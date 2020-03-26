@@ -2,6 +2,9 @@ import {
   Event,
   EventCourse,
   StudentEventEnrollment,
+  Course,
+  StudyField,
+  Local,
   sequelize
 } from '../models';
 
@@ -11,6 +14,35 @@ const eventService = {
     return await Event.findByPk(id, {
       include: [{ all: true, nested: true }],
     });
+  },
+  findByStudyField: async (studyFieldId) => {
+    try {
+      const studyFieldCourses = await Course.findAll({
+        where: { studyFieldId: studyFieldId },
+        include: []
+      });
+
+      const courseIds = studyFieldCourses.map(course => course.id);
+
+      return await EventCourse.findAll({
+        where: { courseId: courseIds },
+        include: [
+          {
+            model: Event,
+            as: 'event',
+            include: [{ model: Local, as: 'local' }]
+          },
+          {
+            model: Course,
+            as: 'course',
+            include: [{ model: StudyField, as: 'studyField' }]
+          }
+        ],
+      });
+
+    } catch (e) {
+      throw e;
+    }
   },
   findByCourse: async (courseId) => {
     return await EventCourse.findAll({

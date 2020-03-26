@@ -21,6 +21,17 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+/* Find Events by Study Field */
+router.get('/find-by-study-field/:studyFieldId', async (req, res, next) => {
+  try {
+    const data = await eventService.findByStudyField(req.params.studyFieldId);
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
 /* Find Events by Course */
 router.get('/find-by-course/:courseId', async (req, res, next) => {
   try {
