@@ -19,6 +19,20 @@ router.get('/find-by-email', async (req, res, next) => {
   }
 });
 
+router.get('/find-enrollment/userid/:studentId/eventid/:eventId', async (req, res, next) => {
+  try {
+    const data = await studentService.findEnrollment(req.params.studentId, req.params.eventId);
+
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
 /* Generic CRUD methods. Implement new methods above */
 baseController.findAll(router, Student);
 baseController.findOne(router, Student);
