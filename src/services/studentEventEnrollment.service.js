@@ -27,6 +27,12 @@ const studentEventEnrollmentService = {
       }
     });
   },
+  findByEventAndStudent: async (eventId, studentId) => {
+    return await StudentEventEnrollment.findOne({
+      where: { eventId, studentId },
+      include: [],
+    });
+  },
 };
 
 export default studentEventEnrollmentService;

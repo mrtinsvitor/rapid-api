@@ -23,11 +23,15 @@ const eventService = {
           {
             model: Local,
             as: 'local'
+          },
+          {
+            model: StudyField,
+            as: 'studyField'
           }
         ]
       });
 
-      if (!eventList) {
+      if (!eventList.length) {
         return;
       }
 

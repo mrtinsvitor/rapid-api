@@ -27,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
 router.get('/find-by-field/:fieldId/up-next', async (req, res, next) => {
   try {
     const data = await eventService.findByStudyFieldUpNext(req.params.fieldId);
-
+    
     if (!data) {
       return res.status(httpStatus.NO_CONTENT).json(data);
     }
@@ -101,6 +101,21 @@ router.post('/participation-check', async (req, res, next) => {
 router.get('/find-all/students/enrolled/:eventId', async (req, res, next) => {
   try {
     const data = await studentEventEnrollment.findByEvent(req.params.eventId);
+
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
+/* Find student enrollment in given event */
+router.get('/find-one/event/:eventId/student/:studentId', async (req, res, next) => {
+  try {
+    const data = await studentEventEnrollment.findByEventAndStudent(req.params.eventId, req.params.studentId);
 
     if (!data) {
       return res.status(httpStatus.NO_CONTENT).json(data);
