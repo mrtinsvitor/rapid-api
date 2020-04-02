@@ -3,10 +3,12 @@ import httpStatus from 'http-status';
 
 import baseController from './baseController.controller';
 
+import { removeEmpty } from '../utils/JsonUtils';
+
 import { Event } from '../models';
+
 import eventService from '../services/event.service';
 import studentEventEnrollment from '../services/studentEventEnrollment.service';
-import { removeEmpty } from '../utils/JsonUtils';
 
 const router = express.Router();
 
@@ -21,10 +23,14 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-/* Find Events by Study Field */
-router.get('/find-by-study-field/:studyFieldId', async (req, res, next) => {
+/* Find Up Next Events by Study Field */
+router.get('/find-by-field/:fieldId/up-next', async (req, res, next) => {
   try {
-    const data = await eventService.findByStudyField(req.params.studyFieldId);
+    const data = await eventService.findByStudyFieldUpNext(req.params.fieldId);
+
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
 
     return res.status(httpStatus.OK).json(data);
   } catch (e) {
@@ -36,6 +42,10 @@ router.get('/find-by-study-field/:studyFieldId', async (req, res, next) => {
 router.get('/find-by-course/:courseId', async (req, res, next) => {
   try {
     const data = await eventService.findByCourse(req.params.courseId);
+
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
 
     return res.status(httpStatus.OK).json(data);
   } catch (e) {
@@ -49,11 +59,10 @@ router.post('/create-event', async (req, res, next) => {
     const data = await eventService.createEvent(removeEmpty(req.body));
 
     return res.status(httpStatus.OK)
-      .json({ message: 'Event created', data });
+      .json({ message: 'Evento criado com sucesso', data });
   } catch (e) {
     next(e);
   }
-
 });
 
 /* Enroll Event for Students */
@@ -61,8 +70,12 @@ router.post('/enroll', async (req, res, next) => {
   try {
     const data = await eventService.enrollEvent(req.body);
 
+    if (data.error) {
+      return res.status(httpStatus.BAD_REQUEST).json(data);
+    }
+
     return res.status(httpStatus.OK)
-      .json({ message: 'Operation completed with success', data });
+      .json({ message: 'Student enrolled with success', data });
   } catch (e) {
     next(e);
   }
@@ -72,6 +85,10 @@ router.post('/enroll', async (req, res, next) => {
 router.post('/participation-check', async (req, res, next) => {
   try {
     const data = await eventService.completeEvent(req.body);
+
+    if (data.error) {
+      return res.status(httpStatus.BAD_REQUEST).json(data);
+    }
 
     return res.status(httpStatus.OK)
       .json({ message: 'Operation completed with success', updatedValues: data });
@@ -85,6 +102,10 @@ router.get('/find-all/students/enrolled/:eventId', async (req, res, next) => {
   try {
     const data = await studentEventEnrollment.findByEvent(req.params.eventId);
 
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
+
     return res.status(httpStatus.OK).json(data);
   } catch (e) {
     next(e);
@@ -95,6 +116,10 @@ router.get('/find-all/students/enrolled/:eventId', async (req, res, next) => {
 router.get('/find-all/professor/host/:professorId', async (req, res, next) => {
   try {
     const data = await eventService.findByHostProfessor(req.params.professorId);
+
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
 
     return res.status(httpStatus.OK).json(data);
   } catch (e) {

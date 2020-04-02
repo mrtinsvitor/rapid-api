@@ -118,6 +118,17 @@ export default (sequelize, DataTypes) => {
       },
       as: 'professor'
     });
+
+    Event.belongsTo(models.StudyField, {
+      foreignKey: {
+        field: 'id_study_field',
+        allowNull: false,
+        validate: {
+          notNull: { msg: 'É necessário informar a área de estudo do evento.' }
+        }
+      },
+      as: 'studyField'
+    });
   }
 
   return Event;
