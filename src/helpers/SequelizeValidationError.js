@@ -1,6 +1,6 @@
 import httpStatus from 'http-status';
 
-class ValidationError extends Error {
+class SequelizeValidationError extends Error {
   constructor(invalidFields) {
     super();
     this.type = 'validation_error';
@@ -10,7 +10,7 @@ class ValidationError extends Error {
   }
 }
 
-export const handleValidationError = (err, res) => {
+export const handleSequelizeValidationError = (err, res) => {
   const invalidFields = err.errors.map(error => {
     console.log(`[${new Date()}][Validation Error]: ${error.message}`);
     
@@ -18,7 +18,7 @@ export const handleValidationError = (err, res) => {
   });
 
   return res.status(httpStatus.BAD_REQUEST)
-    .json(new ValidationError(invalidFields));
+    .json(new SequelizeValidationError(invalidFields));
 };
 
-export default ValidationError;
+export default SequelizeValidationError;

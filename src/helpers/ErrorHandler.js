@@ -1,6 +1,6 @@
 import httpStatus from 'http-status';
 
-import { handleValidationError } from './ValidationError';
+import { handleValidationError } from './SequelizeValidationError';
 
 class ErrorHandler extends Error {
   constructor(
@@ -25,10 +25,8 @@ export const handleError = (err, res) => {
       statusCode,
       status: httpStatus[`${statusCode}_NAME`]
     });
-  }
-
-  if (err.name === 'SequelizeValidationError') {
-    return handleValidationError(err, res);
+  } else if (err.name === 'SequelizeValidationError') {
+    return handleSequelizeValidationError(err, res);
   }
 
   console.log(`[${new Date()}][Internal Error]: ${err}`);
