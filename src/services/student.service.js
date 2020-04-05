@@ -3,6 +3,9 @@ import {
   Course,
   Term,
   StudentEventEnrollment,
+  Event,
+  Local,
+  StudyField,
   sequelize
 } from '../models';
 
@@ -28,6 +31,23 @@ const service = {
     return await StudentEventEnrollment.findOne({
       where: { studentId, eventId },
       include: []
+    });
+  },
+
+  findAllEnrollments: async (studentId) => {
+    return await StudentEventEnrollment.findOne({
+      where: { studentId },
+      include: [
+        {
+          model: Event,
+          as: 'event',
+          include: [
+            { model: StudyField, as: 'studyField' },
+            { model: Local, as: 'local' }
+          ]
+        }
+      ],
+      attributes: { exclude: ['eventId', 'studentId'] }
     });
   },
 };

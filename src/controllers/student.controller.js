@@ -9,6 +9,7 @@ import studentService from '../services/student.service';
 
 const router = express.Router();
 
+/* Find Student by Email */
 router.get('/find-by-email', async (req, res, next) => {
   try {
     const data = await studentService.findByEmail(req.query.email);
@@ -19,9 +20,25 @@ router.get('/find-by-email', async (req, res, next) => {
   }
 });
 
+/* Find Enrollment for Student by Event Id */
 router.get('/find-enrollment/userid/:studentId/eventid/:eventId', async (req, res, next) => {
   try {
     const data = await studentService.findEnrollment(req.params.studentId, req.params.eventId);
+
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
+/* Find All Student's enrollments */
+router.get('/find-all-enrollments/student/:studentId', async (req, res, next) => {
+  try {
+    const data = await studentService.findAllEnrollments(req.params.studentId, req.params.eventId);
 
     if (!data) {
       return res.status(httpStatus.NO_CONTENT).json(data);
