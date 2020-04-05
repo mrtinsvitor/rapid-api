@@ -35,7 +35,7 @@ const service = {
   },
 
   findAllEnrollments: async (studentId) => {
-    return await StudentEventEnrollment.findOne({
+    return await StudentEventEnrollment.findAll({
       where: { studentId },
       include: [
         {
