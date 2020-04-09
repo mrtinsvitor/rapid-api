@@ -38,6 +38,21 @@ router.get('/find-by-field/:fieldId/up-next', async (req, res, next) => {
   }
 });
 
+/* Find Events by Study Field and With Student enrollment */
+router.get('/find-by-field/:fieldId/student-enrollment/:userId', async (req, res, next) => {
+  try {
+    const data = await eventService.findByStudyFieldWithEnrollment(req.params.fieldId, req.params.userId);
+    
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
 /* Find Events by Course */
 router.get('/find-by-course/:courseId', async (req, res, next) => {
   try {
