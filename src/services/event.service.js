@@ -74,9 +74,9 @@ const eventService = {
 
         eventList.map(event => {
           const enrollment = filteredEnrollmentList.find(enrollment => enrollment.eventId === event.id);
-          if (!enrollment) return;
+          if (!enrollment) return eventsWithEnrollment.push({ ...event });
 
-          eventsWithEnrollment.push({ ...event, studentEventEnrollment: enrollment.toJSON() });
+          return eventsWithEnrollment.push({ ...event, studentEventEnrollment: enrollment.toJSON() });
         });
 
         return eventsWithEnrollment;
