@@ -50,6 +50,24 @@ const service = {
       attributes: { exclude: ['eventId', 'studentId'] }
     });
   },
+  findLastEvents: async (studentId) => {
+    const events = await StudentEventEnrollment.findAll({
+      where: { studentId },
+      include: [
+        {
+          model: Event,
+          as: 'event',
+          include: [
+            { model: StudyField, as: 'studyField' },
+            { model: Local, as: 'local' }
+          ]
+        }
+      ],
+      attributes: { exclude: ['eventId', 'studentId'] }
+    });
+
+    return events.filter(event => event.participationDate);
+  },
 };
 
 export default service;
