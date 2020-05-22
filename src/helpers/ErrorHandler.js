@@ -1,6 +1,6 @@
 import httpStatus from 'http-status';
 
-import { handleValidationError } from './SequelizeValidationError';
+import { handleSequelizeValidationError } from './SequelizeValidationError';
 
 class ErrorHandler extends Error {
   constructor(

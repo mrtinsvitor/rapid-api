@@ -66,11 +66,8 @@ export default (sequelize, DataTypes) => {
       },
       enrollmentEndingDate: {
         field: 'dt_enrollment_ending',
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: true,
-        validate: {
-          isAfter: new Date()
-        }
       },
       openingHour: {
         field: 'hr_opening',
