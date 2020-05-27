@@ -12,6 +12,11 @@ import {
 import studentEventEnrollmentService from '../services/studentEventEnrollment.service';
 
 const eventService = {
+  findAll: async () => {
+    return await Event.findAll({
+      include: [{ all: true, nested: true }],
+    });
+  },
   findById: async (id) => {
     return await Event.findByPk(id, {
       include: [{ all: true, nested: true }],

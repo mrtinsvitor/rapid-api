@@ -12,6 +12,17 @@ import studentEventEnrollment from '../services/studentEventEnrollment.service';
 
 const router = express.Router();
 
+/* Find All */
+router.get('/', async (req, res, next) => {
+  try {
+    const data = await eventService.findAll();
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
 /* Find Event by ID */
 router.get('/:id', async (req, res, next) => {
   try {
@@ -157,7 +168,6 @@ router.get('/find-all/professor/host/:professorId', async (req, res, next) => {
   }
 });
 
-baseController.findAll(router, Event);
 baseController.update(router, Event);
 
 export default router;
