@@ -6,6 +6,7 @@ import {
   Course,
   StudyField,
   Local,
+  Student,
   sequelize
 } from '../models';
 
@@ -141,6 +142,16 @@ const eventService = {
         where: { eventId: reqObj.eventId, studentId: reqObj.studentId },
         include: [],
       });
+
+      const event = await Event.findByPk(reqObj.eventId);
+
+      const student = await Student.findByPk(reqObj.studentId);
+
+      await Student.update(
+        { complementaryHours: student.complementaryHours + event.complementaryHours },
+        { where: { id: reqObj.studentId } },
+        { transaction: t }
+      )
 
       if (!studentEventEnrollment) {
         return await StudentEventEnrollment
