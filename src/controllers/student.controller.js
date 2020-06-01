@@ -50,6 +50,21 @@ router.get('/find-all-enrollments/student/:studentId', async (req, res, next) =>
   }
 });
 
+/* Find Latest (7 days ago) participated events by student ID */
+router.get('/find-last-events/checked/student/:studentId', async (req, res, next) => {
+  try {
+    const data = await studentService.findLastEvents(req.params.studentId, req.params.eventId);
+
+    if (!data) {
+      return res.status(httpStatus.NO_CONTENT).json(data);
+    }
+
+    return res.status(httpStatus.OK).json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
 /* Generic CRUD methods. Implement new methods above */
 baseController.findAll(router, Student);
 baseController.findOne(router, Student);

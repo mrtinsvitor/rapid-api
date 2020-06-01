@@ -1,15 +1,23 @@
+import { Op } from 'sequelize';
+
 import {
   Event,
   StudentEventEnrollment,
   Course,
   StudyField,
   Local,
+  Student,
   sequelize
 } from '../models';
 
-import { Op } from 'sequelize';
+import studentEventEnrollmentService from '../services/studentEventEnrollment.service';
 
 const eventService = {
+  findAll: async () => {
+    return await Event.findAll({
+      include: [{ all: true, nested: true }],
+    });
+  },
   findById: async (id) => {
     return await Event.findByPk(id, {
       include: [{ all: true, nested: true }],
@@ -37,6 +45,48 @@ const eventService = {
 
       return eventList.filter(event => new Date(event.eventDate) >= new Date())
         .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
+    } catch (e) {
+      throw e;
+    }
+  },
+  findByStudyFieldWithEnrollment: async (studyFieldId, userId) => {
+    try {
+      const eventList = await Event.findAll({
+        where: { studyFieldId },
+        include: [
+          {
+            model: Local,
+            as: 'local'
+          },
+          {
+            model: StudyField,
+            as: 'studyField'
+          }
+        ]
+      }).map(event => event.toJSON());
+
+      if (!eventList.length) return;
+
+      let promises = []
+      for (let i = 0; i < eventList.length; i++) {
+        const enrollment = studentEventEnrollmentService.findByEventAndStudent(eventList[i].id, userId);
+        promises.push(enrollment);
+      };
+
+      return Promise.all(promises).then(function (enrollmentList) {
+        const filteredEnrollmentList = enrollmentList.filter(enrollment => enrollment !== null);
+
+        const eventsWithEnrollment = [];
+
+        eventList.map(event => {
+          const enrollment = filteredEnrollmentList.find(enrollment => enrollment.eventId === event.id);
+          if (!enrollment) return eventsWithEnrollment.push({ ...event });
+
+          return eventsWithEnrollment.push({ ...event, studentEventEnrollment: enrollment.toJSON() });
+        });
+
+        return eventsWithEnrollment;
+      });
     } catch (e) {
       throw e;
     }
@@ -92,6 +142,16 @@ const eventService = {
         where: { eventId: reqObj.eventId, studentId: reqObj.studentId },
         include: [],
       });
+
+      const event = await Event.findByPk(reqObj.eventId);
+
+      const student = await Student.findByPk(reqObj.studentId);
+
+      await Student.update(
+        { complementaryHours: student.complementaryHours + event.complementaryHours },
+        { where: { id: reqObj.studentId } },
+        { transaction: t }
+      )
 
       if (!studentEventEnrollment) {
         return await StudentEventEnrollment
