@@ -8,7 +8,7 @@ You will just need to install [Node.js](https://nodejs.org/) and a package manag
 
 ## Installation
 
-    $ git clone https://github.com/mrtins/unievents-api
+    $ git clone https://github.com/mrtins/rapid-api
     $ cd unievents-api
     $ npm install or yarn
 
